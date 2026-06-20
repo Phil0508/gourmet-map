@@ -13,8 +13,8 @@
   --color-text-secondary: #9AA0A6;/* 부 텍스트 (연한 그레이) */
   --color-text-muted: #5F6368;    /* 어두운 텍스트/플레이스홀더 */
 
-  --color-primary: #FF5A36;       /* 포인트 오렌지 (메인 액센트) */
-  --color-primary-rgb: 255, 90, 54;
+  --color-primary: #03C75A;       /* 포인트 그린 (네이버 시그니처) */
+  --color-primary-rgb: 3, 199, 90;
   --color-success: #36FF85;       /* 포인트 라임 그린 (부 액센트) */
   --color-success-rgb: 54, 255, 133;
   --color-info: #36A2FF;          /* 블루 포인트 */
@@ -1246,14 +1246,14 @@ body {
    [추가] 라이트 테마 변수 정의 및 요소별 라이트 모드 오버라이드
    ========================================================================== */
 [data-theme="light"] {
-  --color-bg-main: #EAECEF;       /* 라이트 외곽 배경 */
-  --color-bg-app: #FFFFFF;        /* 앱 본체 화이트 */
-  --color-bg-card: #F5F7F8;       /* 카드 영역 배경 */
-  --color-bg-header: #FFFFFF;     /* 헤더 배경 화이트 */
+  --color-bg-main: #F0F2F5;       /* 네이버 외곽 연그레이 배경 */
+  --color-bg-app: #F5F6F7;        /* 네이버 앱 본체 연그레이 배경 */
+  --color-bg-card: #FFFFFF;       /* 네이버 흰색 카드 스타일 */
+  --color-bg-header: #FFFFFF;     /* 헤더 백그라운드 화이트 */
   
-  --color-text-primary: #1C1E21;  /* 주 텍스트 */
-  --color-text-secondary: #5F6368;/* 부 텍스트 */
-  --color-text-muted: #8D949E;    /* 어두운 텍스트/플레이스홀더 */
+  --color-text-primary: #080808;  /* 네이버 주 텍스트 (블랙에 가까운 그레이) */
+  --color-text-secondary: #505050;/* 네이버 부 텍스트 */
+  --color-text-muted: #909090;    /* 네이버 뮤트 플레이스홀더 */
 }
 
 /* 라이트 모드 시 카카오맵 필터 비활성화 */
@@ -1266,121 +1266,125 @@ body {
   filter: none !important;
 }
 
-/* 라이트 모드 개별 컴포넌트 디자인 복원 */
+/* 라이트 모드 개별 컴포넌트 디자인 복원 (Naver.com 컬러 스킴 적용) */
 [data-theme="light"] .main-header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid #ECEFF2;
 }
 [data-theme="light"] .logo-text {
-  background: linear-gradient(135deg, #1C1E21 0%, #5F6368 100%);
+  background: linear-gradient(135deg, #080808 0%, #505050 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 [data-theme="light"] .menu-btn span {
-  background-color: #1C1E21;
+  background-color: #080808;
 }
 [data-theme="light"] .search-box {
-  background-color: rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: #FAFBFB;
+  border: 1px solid #E4E8EB;
 }
 [data-theme="light"] .search-box input {
-  color: #1C1E21;
+  color: #080808;
 }
 [data-theme="light"] .search-btn {
-  color: #5F6368;
+  color: #505050;
 }
 [data-theme="light"] .map-section {
-  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid #ECEFF2;
 }
 [data-theme="light"] .map-ctrl-btn {
-  background-color: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  color: #1C1E21;
+  background-color: #FFFFFF;
+  border: 1px solid #E4E8EB;
+  color: #080808;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 [data-theme="light"] .map-ctrl-btn:hover {
   background-color: var(--color-primary);
   color: #FFFFFF;
 }
 [data-theme="light"] .map-ctrl-btn.my-location {
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: #FFFFFF;
 }
 [data-theme="light"] .map-ctrl-btn.my-location:hover {
   background-color: var(--color-primary);
   color: #FFFFFF;
 }
 [data-theme="light"] .marker-label {
-  background-color: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  color: #1C1E21;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background-color: #FFFFFF;
+  border: 1px solid #DADEE1;
+  color: #080808;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
 [data-theme="light"] .marker-pin::after {
   background: #FFFFFF;
 }
 [data-theme="light"] .custom-overlay-popup {
   background: #FFFFFF !important;
-  color: #1C1E21 !important;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
+  color: #080808 !important;
+  border: 1px solid #E4E8EB;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08) !important;
 }
 [data-theme="light"] .custom-overlay-popup::after {
   background-color: #FFFFFF;
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #E4E8EB;
+  border-bottom: 1px solid #E4E8EB;
 }
 [data-theme="light"] .feed-header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid #ECEFF2;
 }
 [data-theme="light"] .feed-card {
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid #ECEFF2;
   background-color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 [data-theme="light"] .feed-card:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+  border-color: rgba(var(--color-primary-rgb), 0.25);
 }
 [data-theme="light"] .feed-card.highlighted {
-  background-color: rgba(var(--color-success-rgb), 0.02);
+  background-color: rgba(var(--color-success-rgb), 0.01);
 }
 [data-theme="light"] .restaurant-name {
-  color: #1C1E21;
+  color: #080808;
 }
 [data-theme="light"] .card-actions {
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-top: 1px solid #F5F6F7;
 }
 [data-theme="light"] .category-tag {
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: #F5F6F7;
 }
 [data-theme="light"] .adsense-placeholder {
   background: repeating-linear-gradient(
     45deg,
-    rgba(0, 0, 0, 0.01),
-    rgba(0, 0, 0, 0.01) 10px,
-    rgba(0, 0, 0, 0.02) 10px,
-    rgba(0, 0, 0, 0.02) 20px
+    #FAFBFB,
+    #FAFBFB 10px,
+    #F5F6F7 10px,
+    #F5F6F7 20px
   );
-  border: 1px dashed rgba(0, 0, 0, 0.08);
+  border: 1px dashed #E4E8EB;
 }
 [data-theme="light"] .ads-text {
-  color: #5F6368;
+  color: #505050;
 }
 
-/* 라이트 모드 모달 오버라이드 */
+/* 라이트 모드 모달 오버라이드 (네이버 톤앤매너) */
 [data-theme="light"] .modal-content-custom {
-  background-color: rgba(255, 255, 255, 0.98);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  color: #1C1E21;
+  background-color: #FFFFFF;
+  border: 1px solid #DADEE1;
+  color: #080808;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 [data-theme="light"] .modal-header-custom {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid #ECEFF2;
 }
 [data-theme="light"] .modal-close-custom:hover {
-  color: #1C1E21;
+  color: #080808;
 }
 [data-theme="light"] .form-group-custom input[type="text"],
 [data-theme="light"] .form-group-custom select,
 [data-theme="light"] .form-group-custom textarea {
-  background-color: #F8F9FA;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  color: #1C1E21;
+  background-color: #FFFFFF;
+  border: 1px solid #DADEE1;
+  color: #080808;
 }
 [data-theme="light"] .form-group-custom input[type="text"]:focus,
 [data-theme="light"] .form-group-custom select:focus,
@@ -1389,52 +1393,52 @@ body {
 }
 [data-theme="light"] .form-group-custom select option {
   background-color: #FFFFFF;
-  color: #1C1E21;
+  color: #080808;
 }
 [data-theme="light"] .btn-cancel {
-  background-color: #F1F3F5;
-  color: #5F6368;
-  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  background-color: #F5F6F7;
+  color: #505050;
+  border: 1px solid #DADEE1 !important;
 }
 [data-theme="light"] .btn-cancel:hover {
-  background-color: #E9ECEF;
-  color: #1C1E21;
+  background-color: #EAECEF;
+  color: #080808;
 }
 [data-theme="light"] .setting-title,
 [data-theme="light"] .notice-title {
-  color: #1C1E21;
+  color: #080808;
 }
 [data-theme="light"] .setting-item {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid #ECEFF2;
 }
 [data-theme="light"] .notice-item {
-  background-color: #F8F9FA;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  background-color: #FAFBFB;
+  border: 1px solid #ECEFF2;
 }
 [data-theme="light"] .notice-text {
-  color: #5F6368;
+  color: #505050;
 }
 [data-theme="light"] .menu-content {
   background-color: #FFFFFF;
-  border-left: 1px solid rgba(0, 0, 0, 0.08);
-  color: #1C1E21;
+  border-left: 1px solid #ECEFF2;
+  color: #080808;
 }
 [data-theme="light"] .menu-item {
-  color: #5F6368;
+  color: #505050;
 }
 [data-theme="light"] .menu-item:hover {
-  background-color: #F1F3F5;
-  color: #1C1E21;
+  background-color: #F5F6F7;
+  color: #080808;
 }
 [data-theme="light"] .menu-item.active {
   background-color: rgba(var(--color-primary-rgb), 0.08);
   color: var(--color-primary);
 }
 [data-theme="light"] .close-menu-btn:hover {
-  color: #1C1E21;
+  color: #080808;
 }
 [data-theme="light"] .menu-footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid #ECEFF2;
 }
 
 /* ==========================================================================
