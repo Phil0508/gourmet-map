@@ -1254,6 +1254,9 @@ body {
   --color-text-primary: #080808;  /* 네이버 주 텍스트 (블랙에 가까운 그레이) */
   --color-text-secondary: #505050;/* 네이버 부 텍스트 */
   --color-text-muted: #909090;    /* 네이버 뮤트 플레이스홀더 */
+
+  --color-success: #FF5A36;       /* 라이트 모드 가독성을 위한 강조 오렌지 */
+  --color-success-rgb: 255, 90, 54;
 }
 
 /* 라이트 모드 시 카카오맵 필터 비활성화 */
