@@ -67,6 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. 상태 관리 (State)
   let mapEngine = 'fallback'; // 'kakao' or 'fallback' (Leaflet)
   let map = null; // 지도 인스턴스
+  let leafletTileLayer = null; // Leaflet 타일 레이어 레퍼런스
+  let currentTheme = localStorage.getItem('gourmet_theme') || 'dark'; // 테마 모드 ('dark' or 'light')
+  document.documentElement.setAttribute('data-theme', currentTheme);
   
   // 사용자가 제공한 기본 카카오맵 API Key
   const DEFAULT_KAKAO_KEY = '3feeb11c8b85ba1f65ff27e82eb653ba';
@@ -122,6 +125,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 빌트인 키를 이용해 백그라운드에서 카카오맵 로드 개시
     tryLoadKakaoSdk(DEFAULT_KAKAO_KEY);
+
+    // PC/모바일 반응형 레이아웃 변환 시 지도가 찌그러지는 현상 방지
+    let lastWidth = window.innerWidth;
+    window.addEventListener('resize', () => {
+      const currentWidth = window.innerWidth;
+      if ((lastWidth < 768 && currentWidth >= 768) || (lastWidth >= 768 && currentWidth < 768)) {
+        setTimeout(() => {
+          if (map) {
+            if (mapEngine === 'kakao') {
+              map.relayout();
+            } else {
+              map.invalidateSize();
+            }
+          }
+        }, 300);
+      }
+      lastWidth = currentWidth;
+    });
   }
 
   // 4. 활성화된 리스트 가져오기 (전체 vs 즐겨찾기 필터)
@@ -142,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
     activeRouteId = null;
     activePopupOverlay = null;
     activeCardId = null;
+    leafletTileLayer = null;
 
     if (map) {
       if (mapEngine === 'fallback') {
@@ -454,6 +476,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   // [B] Leaflet 폴백 (Fallback / 기본 데모) 가동부
   // ==========================================================================
+  function applyLeafletTiles() {
+    if (!map || mapEngine !== 'fallback') return;
+    if (leafletTileLayer) {
+      map.removeLayer(leafletTileLayer);
+    }
+    const tileUrl = currentTheme === 'light'
+      ? 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
+      : 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+    leafletTileLayer = L.tileLayer(tileUrl, {
+      maxZoom: 19
+    }).addTo(map);
+  }
+
   function initLeafletMap() {
     destroyCurrentMap();
     mapEngine = 'fallback';
@@ -465,9 +500,7 @@ document.addEventListener('DOMContentLoaded', () => {
       attributionControl: false
     }).setView([37.5510, 126.9480], 13);
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      maxZoom: 19
-    }).addTo(map);
+    applyLeafletTiles();
 
     const zoomInBtn = document.getElementById('zoomInBtn');
     const zoomOutBtn = document.getElementById('zoomOutBtn');
@@ -1133,20 +1166,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------
-    // (2) 환경 설정 연동 (애드센스 토글)
+    // (2) 환경 설정 연동 (애드센스 & 라이트 테마 토글)
     // ----------------------------------------------------
     const settingsModal = document.getElementById('settingsModal');
     const menuSettings = document.getElementById('menuSettings');
     const closeSettingsBtn = document.getElementById('closeSettingsBtn');
     const saveSettingsBtn = document.getElementById('saveSettingsBtn');
     const hideAdsToggle = document.getElementById('hideAdsToggle');
-
-    // 로컬 스토리지에 저장된 설정값 불러오기
-    const savedHideAds = localStorage.getItem('hide_ads') === 'true';
-    hideAdsToggle.checked = savedHideAds;
+    const lightThemeToggle = document.getElementById('lightThemeToggle');
 
     function openSettings() {
       closeHamburger();
+      // 열기 직전에 토글 체크 상태 동기화
+      hideAdsToggle.checked = localStorage.getItem('hide_ads') === 'true';
+      lightThemeToggle.checked = (currentTheme === 'light');
       setTimeout(() => settingsModal.classList.add('open'), 200);
     }
 
@@ -1162,6 +1195,22 @@ document.addEventListener('DOMContentLoaded', () => {
     saveSettingsBtn.addEventListener('click', () => {
       // 설정값 저장
       localStorage.setItem('hide_ads', hideAdsToggle.checked ? 'true' : 'false');
+      
+      // 라이트 테마 설정 반영
+      const isLight = lightThemeToggle.checked;
+      currentTheme = isLight ? 'light' : 'dark';
+      localStorage.setItem('gourmet_theme', currentTheme);
+      document.documentElement.setAttribute('data-theme', currentTheme);
+
+      // 지도 테마 실시간 연동
+      if (map) {
+        if (mapEngine === 'kakao') {
+          map.relayout();
+        } else {
+          applyLeafletTiles();
+        }
+      }
+
       closeSettings();
       applyAdSenseVisibility();
       showToast('⚙️ 설정 변경 사항이 적용되었습니다.');

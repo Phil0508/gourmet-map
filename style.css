@@ -1241,3 +1241,268 @@ body {
   color: var(--color-text-secondary);
   line-height: 1.4;
 }
+
+/* ==========================================================================
+   [추가] 라이트 테마 변수 정의 및 요소별 라이트 모드 오버라이드
+   ========================================================================== */
+[data-theme="light"] {
+  --color-bg-main: #EAECEF;       /* 라이트 외곽 배경 */
+  --color-bg-app: #FFFFFF;        /* 앱 본체 화이트 */
+  --color-bg-card: #F5F7F8;       /* 카드 영역 배경 */
+  --color-bg-header: #FFFFFF;     /* 헤더 배경 화이트 */
+  
+  --color-text-primary: #1C1E21;  /* 주 텍스트 */
+  --color-text-secondary: #5F6368;/* 부 텍스트 */
+  --color-text-muted: #8D949E;    /* 어두운 텍스트/플레이스홀더 */
+}
+
+/* 라이트 모드 시 카카오맵 필터 비활성화 */
+[data-theme="light"] .kakao-dark-map {
+  filter: none !important;
+}
+[data-theme="light"] .kakao-dark-map .marker-pin-wrapper,
+[data-theme="light"] .kakao-dark-map .user-marker-pulse,
+[data-theme="light"] .kakao-dark-map .custom-overlay-popup {
+  filter: none !important;
+}
+
+/* 라이트 모드 개별 컴포넌트 디자인 복원 */
+[data-theme="light"] .main-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .logo-text {
+  background: linear-gradient(135deg, #1C1E21 0%, #5F6368 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+[data-theme="light"] .menu-btn span {
+  background-color: #1C1E21;
+}
+[data-theme="light"] .search-box {
+  background-color: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .search-box input {
+  color: #1C1E21;
+}
+[data-theme="light"] .search-btn {
+  color: #5F6368;
+}
+[data-theme="light"] .map-section {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .map-ctrl-btn {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #1C1E21;
+}
+[data-theme="light"] .map-ctrl-btn:hover {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+}
+[data-theme="light"] .map-ctrl-btn.my-location {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+[data-theme="light"] .map-ctrl-btn.my-location:hover {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+}
+[data-theme="light"] .marker-label {
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: #1C1E21;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+[data-theme="light"] .marker-pin::after {
+  background: #FFFFFF;
+}
+[data-theme="light"] .custom-overlay-popup {
+  background: #FFFFFF !important;
+  color: #1C1E21 !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
+}
+[data-theme="light"] .custom-overlay-popup::after {
+  background-color: #FFFFFF;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+[data-theme="light"] .feed-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .feed-card {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  background-color: #FFFFFF;
+}
+[data-theme="light"] .feed-card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .feed-card.highlighted {
+  background-color: rgba(var(--color-success-rgb), 0.02);
+}
+[data-theme="light"] .restaurant-name {
+  color: #1C1E21;
+}
+[data-theme="light"] .card-actions {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .category-tag {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+[data-theme="light"] .adsense-placeholder {
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.01),
+    rgba(0, 0, 0, 0.01) 10px,
+    rgba(0, 0, 0, 0.02) 10px,
+    rgba(0, 0, 0, 0.02) 20px
+  );
+  border: 1px dashed rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .ads-text {
+  color: #5F6368;
+}
+
+/* 라이트 모드 모달 오버라이드 */
+[data-theme="light"] .modal-content-custom {
+  background-color: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #1C1E21;
+}
+[data-theme="light"] .modal-header-custom {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .modal-close-custom:hover {
+  color: #1C1E21;
+}
+[data-theme="light"] .form-group-custom input[type="text"],
+[data-theme="light"] .form-group-custom select,
+[data-theme="light"] .form-group-custom textarea {
+  background-color: #F8F9FA;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: #1C1E21;
+}
+[data-theme="light"] .form-group-custom input[type="text"]:focus,
+[data-theme="light"] .form-group-custom select:focus,
+[data-theme="light"] .form-group-custom textarea:focus {
+  border-color: var(--color-primary);
+}
+[data-theme="light"] .form-group-custom select option {
+  background-color: #FFFFFF;
+  color: #1C1E21;
+}
+[data-theme="light"] .btn-cancel {
+  background-color: #F1F3F5;
+  color: #5F6368;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+[data-theme="light"] .btn-cancel:hover {
+  background-color: #E9ECEF;
+  color: #1C1E21;
+}
+[data-theme="light"] .setting-title,
+[data-theme="light"] .notice-title {
+  color: #1C1E21;
+}
+[data-theme="light"] .setting-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .notice-item {
+  background-color: #F8F9FA;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+[data-theme="light"] .notice-text {
+  color: #5F6368;
+}
+[data-theme="light"] .menu-content {
+  background-color: #FFFFFF;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  color: #1C1E21;
+}
+[data-theme="light"] .menu-item {
+  color: #5F6368;
+}
+[data-theme="light"] .menu-item:hover {
+  background-color: #F1F3F5;
+  color: #1C1E21;
+}
+[data-theme="light"] .menu-item.active {
+  background-color: rgba(var(--color-primary-rgb), 0.08);
+  color: var(--color-primary);
+}
+[data-theme="light"] .close-menu-btn:hover {
+  color: #1C1E21;
+}
+[data-theme="light"] .menu-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   [추가] PC / 컴퓨터 접속 시 데스크톱 뷰 레이아웃 (반응형 변환)
+   ========================================================================== */
+@media (min-width: 768px) {
+  body {
+    overflow: hidden;
+    background-color: var(--color-bg-main);
+  }
+  
+  .phone-container {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    border-radius: 0 !important;
+    border: none !important;
+    display: grid !important;
+    grid-template-rows: 60px 1fr !important;
+    grid-template-columns: 400px 1fr !important;
+    grid-template-areas: 
+      "header header"
+      "feed map" !important;
+  }
+  
+  .main-header {
+    grid-area: header;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  [data-theme="light"] .main-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  
+  .feed-section {
+    grid-area: feed;
+    height: 100% !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  [data-theme="light"] .feed-section {
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  
+  .map-section {
+    grid-area: map;
+    height: 100% !important;
+    border-bottom: none !important;
+  }
+
+  .search-box {
+    width: 180px !important;
+  }
+
+  .search-box:focus-within {
+    width: 240px !important;
+  }
+
+  /* 햄버거 메뉴를 우측 슬라이드 대신 좌측 피드 위에 고정 배치하든가 모달 사이즈 오버라이드 */
+  .menu-content {
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  [data-theme="light"] .menu-content {
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .modal-content-custom {
+    max-width: 440px;
+  }
+}
+
