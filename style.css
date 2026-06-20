@@ -50,26 +50,26 @@ body {
 }
 
 /* 2. Mobile Container Layout */
-.phone-container {
-  width: 100%;
-  max-width: 480px;
-  height: 100vh;
-  max-height: 920px;
-  background-color: var(--color-bg-app);
-  box-shadow: var(--shadow-lg);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-@media (min-width: 481px) {
   .phone-container {
-    border-radius: var(--border-radius-lg);
-    height: 90vh;
+    width: 100%;
+    max-width: 480px;
+    height: 100vh;
+    max-height: 920px;
+    background-color: var(--color-bg-app);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
-}
+  
+  @media (min-width: 481px) {
+    .phone-container {
+      border-radius: 24px;
+      height: 90vh;
+    }
+  }
 
 /* 3. Header Section */
 .main-header {
@@ -578,14 +578,15 @@ body {
 /* Feed Cards */
 .feed-card {
   background-color: var(--color-bg-card);
-  border-radius: var(--border-radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 14px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   transition: all var(--transition-normal);
   cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   animation: slide-in-card 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15) forwards;
 }
 
@@ -595,15 +596,15 @@ body {
 }
 
 .feed-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(var(--color-primary-rgb), 0.25);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  border-color: rgba(var(--color-primary-rgb), 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
 .feed-card.highlighted {
-  border-color: var(--color-success);
-  box-shadow: 0 0 10px rgba(var(--color-success-rgb), 0.2);
-  background-color: rgba(255, 255, 255, 0.02);
+  border-color: var(--color-primary); /* 네온 민트 포인트로 강조 */
+  box-shadow: 0 0 12px rgba(var(--color-primary-rgb), 0.25);
+  background-color: rgba(var(--color-primary-rgb), 0.02);
 }
 
 .card-main-content {
@@ -614,7 +615,7 @@ body {
 .card-image-wrapper {
   width: 90px;
   height: 90px;
-  border-radius: var(--border-radius-sm);
+  border-radius: 12px;
   overflow: hidden;
   position: relative;
   flex-shrink: 0;
@@ -625,6 +626,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 12px;
   transition: transform var(--transition-normal);
 }
 
@@ -1335,16 +1337,17 @@ body {
   border-bottom: 1px solid #ECEFF2;
 }
 [data-theme="light"] .feed-card {
-  border: 1px solid #ECEFF2;
+  border: 1px solid rgba(0, 0, 0, 0.03);
   background-color: #FFFFFF;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 8px 24px rgba(141, 148, 158, 0.06);
 }
 [data-theme="light"] .feed-card:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
-  border-color: rgba(var(--color-primary-rgb), 0.25);
+  box-shadow: 0 12px 32px rgba(141, 148, 158, 0.12);
+  border-color: rgba(var(--color-primary-rgb), 0.35);
 }
 [data-theme="light"] .feed-card.highlighted {
-  background-color: rgba(var(--color-success-rgb), 0.01);
+  background-color: rgba(var(--color-primary-rgb), 0.01);
+  border-color: var(--color-primary);
 }
 [data-theme="light"] .restaurant-name {
   color: #080808;
