@@ -70,6 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let leafletTileLayer = null; // Leaflet 타일 레이어 레퍼런스
   let currentTheme = localStorage.getItem('gourmet_theme') || 'dark'; // 테마 모드 ('dark' or 'light')
   document.documentElement.setAttribute('data-theme', currentTheme);
+
+  function updateThemeToggleButton() {
+    const btn = document.getElementById('themeToggleBtn');
+    if (btn) {
+      btn.innerText = currentTheme === 'light' ? '🌙' : '☀️';
+    }
+  }
   
   // 사용자가 제공한 기본 카카오맵 API Key
   const DEFAULT_KAKAO_KEY = '3feeb11c8b85ba1f65ff27e82eb653ba';
@@ -122,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
     bindUIEvents();
     bindMenuModalsEvents();
     applyAdSenseVisibility();
+    updateThemeToggleButton();
 
     // 빌트인 키를 이용해 백그라운드에서 카카오맵 로드 개시
     tryLoadKakaoSdk(DEFAULT_KAKAO_KEY);
@@ -984,6 +992,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuModal = document.getElementById('menuModal');
     const closeMenuBtn = document.getElementById('closeMenuBtn');
     const menuOverlay = document.getElementById('menuOverlay');
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+
+    // 테마 토글 버튼 클릭 이벤트
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener('click', () => {
+        currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+        localStorage.setItem('gourmet_theme', currentTheme);
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        updateThemeToggleButton();
+        
+        // 지도 테마 실시간 연동
+        if (map) {
+          if (mapEngine === 'kakao') {
+            map.relayout();
+          } else {
+            applyLeafletTiles();
+          }
+        }
+        showToast(`🌓 ${currentTheme === 'light' ? '라이트' : '다크'} 테마로 전환되었습니다.`);
+      });
+    }
 
     function openMenu() {
       menuModal.classList.add('open');
@@ -1166,20 +1195,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------
-    // (2) 환경 설정 연동 (애드센스 & 라이트 테마 토글)
+    // (2) 환경 설정 연동 (애드센스 토글)
     // ----------------------------------------------------
     const settingsModal = document.getElementById('settingsModal');
     const menuSettings = document.getElementById('menuSettings');
     const closeSettingsBtn = document.getElementById('closeSettingsBtn');
     const saveSettingsBtn = document.getElementById('saveSettingsBtn');
     const hideAdsToggle = document.getElementById('hideAdsToggle');
-    const lightThemeToggle = document.getElementById('lightThemeToggle');
 
     function openSettings() {
       closeHamburger();
       // 열기 직전에 토글 체크 상태 동기화
       hideAdsToggle.checked = localStorage.getItem('hide_ads') === 'true';
-      lightThemeToggle.checked = (currentTheme === 'light');
       setTimeout(() => settingsModal.classList.add('open'), 200);
     }
 
@@ -1195,22 +1222,6 @@ document.addEventListener('DOMContentLoaded', () => {
     saveSettingsBtn.addEventListener('click', () => {
       // 설정값 저장
       localStorage.setItem('hide_ads', hideAdsToggle.checked ? 'true' : 'false');
-      
-      // 라이트 테마 설정 반영
-      const isLight = lightThemeToggle.checked;
-      currentTheme = isLight ? 'light' : 'dark';
-      localStorage.setItem('gourmet_theme', currentTheme);
-      document.documentElement.setAttribute('data-theme', currentTheme);
-
-      // 지도 테마 실시간 연동
-      if (map) {
-        if (mapEngine === 'kakao') {
-          map.relayout();
-        } else {
-          applyLeafletTiles();
-        }
-      }
-
       closeSettings();
       applyAdSenseVisibility();
       showToast('⚙️ 설정 변경 사항이 적용되었습니다.');

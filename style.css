@@ -1510,3 +1510,30 @@ body {
   }
 }
 
+/* 테마 전환 토글 버튼 스타일 */
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transition: transform var(--transition-fast) ease, background-color var(--transition-fast);
+  padding: 0;
+  color: var(--color-text-primary);
+  margin-right: 6px;
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.15) rotate(15deg);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] .theme-toggle-btn:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
