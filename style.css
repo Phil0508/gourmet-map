@@ -13,8 +13,8 @@
   --color-text-secondary: #9AA0A6;/* 부 텍스트 (연한 그레이) */
   --color-text-muted: #5F6368;    /* 어두운 텍스트/플레이스홀더 */
 
-  --color-primary: #03C75A;       /* 포인트 그린 (네이버 시그니처) */
-  --color-primary-rgb: 3, 199, 90;
+  --color-primary: #00E1D9;       /* 포인트 네온 민트 */
+  --color-primary-rgb: 0, 225, 217;
   --color-success: #36FF85;       /* 포인트 라임 그린 (부 액센트) */
   --color-success-rgb: 54, 255, 133;
   --color-info: #36A2FF;          /* 블루 포인트 */
